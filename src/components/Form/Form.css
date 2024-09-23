@@ -1,0 +1,32 @@
+.form{
+    height:fit-content;
+    text-align: center;
+    width:300px;
+    padding:30px;
+    border-radius: 50px;
+    position:fixed;
+    top:200px;
+    left:600px;
+    background-color: rgb(39, 130, 175);
+}
+.form input{
+    height:40px;
+    border-radius: 50px;
+    width:250px;
+    padding:5px;
+    font-size: 15px;
+    border:2px solid black;
+}
+.submit-button{
+    margin-top:20px;
+    height:40px;
+    width:100px;
+    border-radius: 50px;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+.submit-button:hover{
+    background: linear-gradient(90deg, #ea0303, #164370);
+  -webkit-background-clip: text; /* Clips background to text */
+  -webkit-text-fill-color: transparent;
+}

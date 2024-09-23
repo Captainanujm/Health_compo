@@ -1,0 +1,13 @@
+body{
+    box-sizing: border-box;
+    background-color:white;
+}
+.App{
+    padding:50px;
+}
+.App-item{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:50px;
+}

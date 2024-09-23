@@ -1,0 +1,12 @@
+img{
+    height:78px;
+    width:90px;
+    position:fixed;
+    top:730px;
+    left:1400px;
+    transition: transform 0.3s ease;
+}
+img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}

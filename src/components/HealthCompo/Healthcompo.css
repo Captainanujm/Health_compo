@@ -1,0 +1,39 @@
+.health-card{
+    margin:0px;
+    text-align: center;
+    height:300px;
+    width:300px;
+    padding:20px;
+    border-radius: 50px;
+    background-color: rgb(88, 147, 165);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition:transform 0.5s ease;
+}
+.health-card:hover{
+    transform:scale(1.07);
+}
+.edit-delete{
+    display:flex;
+    justify-content: space-between;
+}
+.edit,.delete{
+    height:40px;
+    width:80px;
+    border-radius: 50px;
+    background-color: burlywood;
+    transition: transform 0.1s;
+}
+.edit:hover,.delete:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.delete{
+    background-color: rgb(242, 71, 71);
+}
+.content h1{
+    background: linear-gradient(90deg, #ea0303, #164370);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
