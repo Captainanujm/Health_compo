@@ -9,7 +9,7 @@ function HealthCompo(props){
         </div>
             <div className="edit-delete">
                 <button className="edit">Edit</button>
-                <button className="delete">Delete</button>
+                <button onClick={props.onClick} className="delete">Delete</button>
             </div>
         </div>)
 }

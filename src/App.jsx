@@ -41,6 +41,10 @@ function App(){
   function handleClick(){
     setClicked(true);
   }
+  function deleteCardInfo(key){
+    const updatedList = servicelist.filter((serviceAPI, index) => index !== key);
+    setserviceList(updatedList);
+  }
   function perAddFunction(newserviceAPI){
     setserviceList((prevServices)=>{
       return [...prevServices,newserviceAPI];
@@ -50,9 +54,9 @@ function App(){
   return(<div className="App">
     {clicked==false?
    <div className="App-item">
-    {servicelist.map((serviceAPI)=>{
+    {servicelist.map((serviceAPI,index)=>{
       return(
-        <HealthCompo service={serviceAPI.service} description={serviceAPI.description} price={serviceAPI.price}/>
+        <HealthCompo key={index} onClick={()=>{deleteCardInfo(index)}} service={serviceAPI.service} description={serviceAPI.description} price={serviceAPI.price} />
       )
     })}
    </div>
