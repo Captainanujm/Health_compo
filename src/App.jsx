@@ -1,11 +1,13 @@
 import react from "react";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import './App.css'
 import HealthCompo from "./components/HealthCompo/Healthcompo";
 import AddButton from "./components/AddButton/AddButton";
 import Form from "./components/Form/Form";
 function App(){
   const [clicked,setClicked]=useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const[servicelist,setserviceList]=useState([
     {
       service:"Endoscopy",
@@ -40,23 +42,41 @@ function App(){
   ]);
   function handleClick(){
     setClicked(true);
+    setIsEditing(false);
   }
+  function editCardInfo(key) {
+    setClicked(true);
+    setIsEditing(true);
+    setEditIndex(key);
+  }
+
   function deleteCardInfo(key){
     const updatedList = servicelist.filter((serviceAPI, index) => index !== key);
     setserviceList(updatedList);
   }
   function perAddFunction(newserviceAPI){
+    if (isEditing) {
+      const updatedList = [...servicelist];
+      updatedList[editIndex] = newserviceAPI;
+      setserviceList(updatedList);
+      setEditIndex(null);
+    } else{
     setserviceList((prevServices)=>{
       return [...prevServices,newserviceAPI];
     })
-    setClicked(false);;
+    setClicked(false);
+  }
+  }
+  function handleEdit(index) {
+    setClicked(true); 
+    setEditIndex(index);
   }
   return(<div className="App">
     {clicked==false?
    <div className="App-item">
     {servicelist.map((serviceAPI,index)=>{
       return(
-        <HealthCompo key={index} onClick={()=>{deleteCardInfo(index)}} service={serviceAPI.service} description={serviceAPI.description} price={serviceAPI.price} />
+        <HealthCompo key={index} onEdit={() => editCardInfo(index)}  onClick={()=>{deleteCardInfo(index)}} service={serviceAPI.service} description={serviceAPI.description} price={serviceAPI.price} />
       )
     })}
    </div>
@@ -65,7 +85,7 @@ function App(){
       <div className="Add-button">
       <AddButton onClick={handleClick}/>
       </div>
-      {clicked==true?<Form performAdd={perAddFunction}/>:null}
+      {clicked==true?<Form performAdd={perAddFunction} isEdit={isEditing} serviceData={isEditing ? servicelist[editIndex] : null}/>:null}
     
   </div>)
 }

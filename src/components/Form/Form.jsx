@@ -1,10 +1,17 @@
 import react from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import './Form.css';
 function Form(props){
     const [service,setService]=useState("");
     const [serviceDes,setServiceDes]=useState("");
     const [price,setPrice]=useState("");
+    useEffect(() => {
+        if (props.isEdit && props.serviceData) {
+          setService(props.serviceData.service ||"");
+          setServiceDes(props.serviceData.description||"");
+          setPrice(props.serviceData.price||"");
+        }
+      }, [props.isEdit, props.serviceData]);
     function handleSubmit(event){
         event.preventDefault();
         const newService={
@@ -17,6 +24,7 @@ function Form(props){
         setServiceDes("");
         setPrice("");
     }
+    
     return (<form onSubmit={handleSubmit}className="form">
             <div className="service-name">
                 <h2>Service Name</h2>
@@ -37,7 +45,7 @@ function Form(props){
                 }} type="text" placeholder="enter the service price..."></input>
             </div>
             <div className="submit">
-               <button className="submit-button"> Submit</button> 
+               <button className="submit-button"> {props.isEdit ? "Update" : "Submit"}</button> 
             </div>
     </form>)
 }
